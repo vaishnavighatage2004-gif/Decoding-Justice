@@ -421,16 +421,16 @@ with tabs[2]:
     voice_col, text_col = st.columns(2)
 
     # --- Voice Input ---
-    with voice_col:
-        if st.button("🎤 Use Voice Input"):
-            with st.spinner("Listening..."):
-                spoken = speech_to_text_sd(duration=5)
-            if spoken and not spoken.startswith(("❌","⚠️","⏰")):
-                user_query = spoken
-            else:
-                user_query = ""
-        else:
-            user_query = ""
+    #with voice_col:
+        #if st.button("🎤 Use Voice Input"):
+            #with st.spinner("Listening..."):
+                #spoken = speech_to_text_sd(duration=5)
+            #if spoken and not spoken.startswith(("❌","⚠️","⏰")):
+                #user_query = spoken
+            #else:
+                #user_query = ""
+        #else:
+            #user_query = ""
 
     # --- Text Input fallback ---
     with text_col:
