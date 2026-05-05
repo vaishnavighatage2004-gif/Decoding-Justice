@@ -434,7 +434,7 @@ with tabs[2]:
 
     # --- Text Input fallback ---
     with text_col:
-    user_query = st.text_input("Type your question:")
+      user_query = st.text_input("Type your question:")
 
     # --- Ask LLM ---
     if user_query:
