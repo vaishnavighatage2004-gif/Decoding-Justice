@@ -16,8 +16,8 @@ import torch
 import numpy as np
 from langchain.memory import ConversationBufferMemory
 from groq import Groq
-import sounddevice as sd
-import wavio
+#import sounddevice as sd
+#import wavio
 import speech_recognition as sr
 from PyPDF2 import PdfReader
 
@@ -354,41 +354,41 @@ with tabs[1]:
 # Tab 2 - Chat Follow-up
 # ---------------------------
 
-def speech_to_text_sd(duration=5):
-    fs = 44100  # Sampling rate
-    st.info(f"🎤 Listening for {duration} seconds...")
+#def speech_to_text_sd(duration=5):
+    #fs = 44100  # Sampling rate
+    #st.info(f"🎤 Listening for {duration} seconds...")
 
     # Record audio
-    recording = sd.rec(int(duration * fs), samplerate=fs, channels=1)
-    sd.wait()  # Wait until recording is finished
-    wavio.write("temp.wav", recording, fs, sampwidth=2)
+    #recording = sd.rec(int(duration * fs), samplerate=fs, channels=1)
+   # sd.wait()  # Wait until recording is finished
+   # wavio.write("temp.wav", recording, fs, sampwidth=2)
 
     # Convert audio to text
-    recognizer = sr.Recognizer()
-    with sr.AudioFile("temp.wav") as source:
-        audio = recognizer.record(source)
+    #recognizer = sr.Recognizer()
+    #with sr.AudioFile("temp.wav") as source:
+       # audio = recognizer.record(source)
 
-    try:
-        text = recognizer.recognize_google(audio)
-        st.success("✅ Recognized!")
-        return text
-    except sr.UnknownValueError:
-        return "❌ Could not understand audio."
-    except sr.RequestError:
-        return "⚠️ Could not request results; check your internet connection."
+    #try:
+        #text = recognizer.recognize_google(audio)
+        #st.success("✅ Recognized!")
+        #return text
+    #except sr.UnknownValueError:
+        #return "❌ Could not understand audio."
+   # except sr.RequestError:
+        #return "⚠️ Could not request results; check your internet connection."
 
-def speak_same_language(text, user_query_language='en'):
-    """
-    Convert text to speech and play in browser using Streamlit audio.
-    """
-    try:
-        tts = gTTS(text=text, lang=user_query_language)
-        mp3_fp = io.BytesIO()
-        tts.write_to_fp(mp3_fp)
-        mp3_fp.seek(0)  # Move pointer to the start
-        st.audio(mp3_fp, format='audio/mp3')
-    except Exception as e:
-        st.error(f"TTS failed: {e}")
+#def speak_same_language(text, user_query_language='en'):
+    #"""
+    #Convert text to speech and play in browser using Streamlit audio.
+    #"""
+    #try:
+     #   tts = gTTS(text=text, lang=user_query_language)
+     #   mp3_fp = io.BytesIO()
+    #    tts.write_to_fp(mp3_fp)
+    #    mp3_fp.seek(0)  # Move pointer to the start
+    #    st.audio(mp3_fp, format='audio/mp3')
+    #except Exception as e:
+    #    st.error(f"TTS failed: {e}")
 
 # -----------------------------
 # Function: Build prompt for follow-up questions
