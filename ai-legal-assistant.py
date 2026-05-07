@@ -8,8 +8,7 @@ import re
 from typing import List, Optional
 
 import streamlit as st
-from gtts import gTTS
-from langdetect import detect
+
 
 from transformers import AutoTokenizer, AutoModel
 import torch
@@ -491,7 +490,30 @@ with tabs[3]:
 # ---------------------------
 # Tab 4 - Judgment Comparison
 # ---------------------------
+def build_compare_prompt(textA, textB):
+    prompt = f"""
+You are an AI Legal Assistant.
+
+Compare the following two legal documents and provide:
+
+1. Key similarities
+2. Key differences
+3. Important clauses present in one but missing in the other
+4. Overall legal analysis
+
+--- Document A ---
+{textA}
+
+--- Document B ---
+{textB}
+
+Provide a clear and structured comparison.
+"""
+    return prompt
+
+
 with tabs[4]:
+ 
     st.header("⚖️ Judgment Comparison (A vs B)")
     st.markdown("Upload or paste two documents to compare.")
 
@@ -521,6 +543,8 @@ with tabs[4]:
         textB = extract_text_from_pdf_bytes(bytesB, allow_ocr=False)
     elif pasteB.strip():
         textB = pasteB.strip()
+
+        
 
     # ---- Compare Button ----
     if st.button("Compare A vs B"):
