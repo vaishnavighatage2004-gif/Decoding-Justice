@@ -454,7 +454,7 @@ with tabs[2]:
         if resp:
             st.markdown("**Assistant:**")
             st.write(resp)
-            speak_same_language(resp, user_query_language='en')  # or detect language dynamically
+            #speak_same_language(resp, user_query_language='en')  # or detect language dynamically
 
 
 
